@@ -355,9 +355,28 @@
         </form>
      </div>
 
-     <script src="https://docs.google.com/spreadsheets/d/1l2jAycfnsCzJBVuniqLKJbK9nfnhdT1dw3XIef11OD8/edit?usp=sharing"></script>
-   </div>
- </section>
+       <script>
+    const scriptURL = 'YOUR_SCRIPT_URL_HERE';
+    const form = document.getElementById('myForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => jsonData[key] = value);
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(jsonData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => alert('Success!'))
+      .catch(error => alert('Error!', error.message));
+    });
+  </script>
  
  <footer>
    <p>© 2025 Ananya Bhatia | All rights reserved.</p>
